@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #0074d9;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <input type="text" id="task" placeholder="Add a new task">
+        <button id="addTask">Add</button>
+        <ul id="taskList">
+            <!-- Tasks will be added here dynamically -->
+        </ul>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const taskInput = document.getElementById("task");
+                const addTaskButton = document.getElementById("addTask");
+                const taskList = document.getElementById("taskList");
+
+                addTaskButton.addEventListener("click", function () {
+                    const taskText = taskInput.value.trim();
+                    if (taskText) {
+                        const taskItem = document.createElement("li");
+                        taskItem.innerHTML = taskText;
+                        taskItem.addEventListener("click", toggleTask);
+                        taskList.appendChild(taskItem);
+                        taskInput.value = "";
+                    }
+                });
+
+                function toggleTask(event) {
+                    event.target.classList.toggle("completed");
+                }
+            });
+        </script>
+    </div>
+</body>
+</html>
